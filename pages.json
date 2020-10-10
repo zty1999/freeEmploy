@@ -12,7 +12,7 @@
 				"navigationBarTitleText": "首页"
 			}
 		},  {
-			"path": "pages/reg/reg",
+			"path": "pages/register/register",
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
@@ -43,6 +43,18 @@
             "path" : "pages/main/introduce",
             "style" : {
 				"navigationBarTitleText": "简历详情"
+			}
+        }
+        ,{
+            "path" : "pages/register/choose",
+            "style" : {
+				"navigationBarTitleText": "注册"
+			}
+        }
+        ,{
+            "path" : "pages/register/category",
+            "style" : {
+				"navigationBarTitleText": "注册"
 			}
         }
     ],

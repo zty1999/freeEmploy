@@ -16,6 +16,7 @@
 		</view>
 		<view class="btn-row">
 			<button type="primary" class="primary" @tap="bindLogin">登录</button>
+			<view class="reg-box">还没账号？<view class="reg-btn" @click="goRegister">立即注册</view></view>
 		</view>
 		<view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
 			<view class="oauth-image" v-for="provider in providerList" :key="provider.value">
@@ -100,45 +101,45 @@
 					})
 					return
 				}
-				uniCloud.callFunction({
-					name: 'user-center',
-					data: {
-						action: 'sendSmsCode',
-						params: {
-							mobile: this.mobile
-						}
-					},
-					success: (e) => {
-						if (e.result.code == 0) {
-							uni.showModal({
-								content: '验证码发送成功，请注意查收',
-								showCancel: false
-							})
-							this.codeDuration = 60
-							this.codeInterVal = setInterval(() => {
-								this.codeDuration--
-								if (this.codeDuration === 0) {
-									if (this.codeInterVal) {
-										clearInterval(this.codeInterVal)
-										this.codeInterVal = null
-									}
-								}
-							}, 1000)
-						} else {
-							uni.showModal({
-								content: '验证码发送失败：' + e.result.msg,
-								showCancel: false
-							})
-						}
+				// uniCloud.callFunction({
+				// 	name: 'user-center',
+				// 	data: {
+				// 		action: 'sendSmsCode',
+				// 		params: {
+				// 			mobile: this.mobile
+				// 		}
+				// 	},
+				// 	success: (e) => {
+				// 		if (e.result.code == 0) {
+				// 			uni.showModal({
+				// 				content: '验证码发送成功，请注意查收',
+				// 				showCancel: false
+				// 			})
+				// 			this.codeDuration = 60
+				// 			this.codeInterVal = setInterval(() => {
+				// 				this.codeDuration--
+				// 				if (this.codeDuration === 0) {
+				// 					if (this.codeInterVal) {
+				// 						clearInterval(this.codeInterVal)
+				// 						this.codeInterVal = null
+				// 					}
+				// 				}
+				// 			}, 1000)
+				// 		} else {
+				// 			uni.showModal({
+				// 				content: '验证码发送失败：' + e.result.msg,
+				// 				showCancel: false
+				// 			})
+				// 		}
 
-					},
-					fail(e) {
-						uni.showModal({
-							content: '验证码发送失败',
-							showCancel: false
-						})
-					}
-				})
+				// 	},
+				// 	fail(e) {
+				// 		uni.showModal({
+				// 			content: '验证码发送失败',
+				// 			showCancel: false
+				// 		})
+				// 	}
+				// })
 			},
 			loginBySms() {
 				if (!/^1\d{10}$/.test(this.mobile)) {
@@ -149,8 +150,9 @@
 					return
 				}
 				if (!/^\d{6}$/.test(this.code)) {
+					console.log('xxxx')
 					uni.showModal({
-						title: '验证码为6位纯数字',
+						content: '验证码为6位纯数字',
 						showCancel: false
 					});
 					return;
@@ -163,6 +165,11 @@
 			},
 			bindLogin() {
 				this.loginBySms()
+			},
+			goRegister () {
+				uni.navigateTo({
+					url: '../register/choose',
+				});
 			},
 			oauth(value) {
 				console.log('三方登录只演示登录api能力，暂未关联云端数据');
@@ -306,5 +313,17 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0;
+	}
+	.reg-box {
+		margin-top: 10px;
+		color: #333333;
+		font-size: 13px;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		.reg-btn {
+			color: #00C97A;
+		}
 	}
 </style>

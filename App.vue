@@ -93,6 +93,30 @@
 		width: 100px;
 		padding-left: 15px;
 	}
+	.btn-green {
+		width: 90px;
+		height: 34px;
+		background: #00E496;
+		border-radius: 4px;
+		color: white;
+		font-size: 14px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.btn-light-green {
+		width: 90px;
+		height: 34px;
+		background: #DEF7EE;
+		border-radius: 4px;
+		color: #00E496;
+		font-size: 14px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	uni-button:after {
 		border: 0;
 	}
