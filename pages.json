@@ -56,7 +56,19 @@
             "style" : {
 				"navigationBarTitleText": "注册"
 			}
-        }
+		},
+		{
+			"path": "pages/tutoring/educationExperience",
+			"style": {
+				"navigationBarTitleText": "教育经历"
+			}
+		},
+		{
+			"path": "pages/tutoring/workExperience",
+			"style": {
+				"navigationBarTitleText": "工作经验"
+			}
+		}
     ],
 	"tabBar": {
 		"color": "#7a7e83",
