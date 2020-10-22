@@ -1,5 +1,11 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页,
+	{
+		"path": "pages/tutoring/resume",
+		"style": {
+			"navigationBarTitleText": "我的简历"
+		}
+	},
 		{
 			"path": "pages/login/login",
 			"style": {
@@ -11,7 +17,7 @@
 			"style": {
 				"navigationBarTitleText": "首页"
 			}
-		},  {
+		}, {
 			"path": "pages/register/register",
 			"style": {
 				"navigationBarTitleText": "注册"
@@ -26,34 +32,40 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}
-	    ,{
-            "path" : "pages/order/index",
-            "style" : {
-				"navigationBarTitleText": "订单"
+		}, {
+			"path": "pages/order/employed",
+			"style": {
+				"navigationBarTitleText": "订单页面"
 			}
-        }
-        ,{
-            "path" : "pages/main/list",
-            "style" : {
+		}, {
+			"path": "pages/order/employer",
+			"style": {
+				"navigationBarTitleText": "订单页面"
+			}
+		}, {
+			"path": "pages/main/list",
+			"style": {
 				"navigationBarTitleText": "家教"
 			}
-        }
-        ,{
-            "path" : "pages/main/introduce",
-            "style" : {
+		},{
+			"path": "pages/main/introduce",
+			"style": {
 				"navigationBarTitleText": "简历详情"
 			}
-        }
-        ,{
-            "path" : "pages/register/choose",
-            "style" : {
+		}, {
+			"path": "pages/register/choose",
+			"style": {
 				"navigationBarTitleText": "注册"
 			}
-        }
-        ,{
-            "path" : "pages/register/category",
-            "style" : {
+		}, {
+			"path": "pages/register/category",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/tutoring/teachScope",
+			"style": {
 				"navigationBarTitleText": "注册"
 			}
 		},
@@ -68,29 +80,86 @@
 			"style": {
 				"navigationBarTitleText": "工作经验"
 			}
+		},
+		{
+			"path": "pages/tutoring/private",
+			"style": {
+				"navigationBarTitleText": "家教"
+			}
+		},
+		// {
+		// 	"path": "pages/tutoring/resume",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的简历"
+		// 	}
+		// },
+		
+		{
+			"path": "pages/tutoring/uploadAvatar",
+			"style": {
+				"navigationBarTitleText": "上传头像"
+			}
+		},
+		{
+			"path": "pages/tutoring/selfIntroduce",
+			"style": {
+				"navigationBarTitleText": "个性介绍"
+				}
+		},
+		{
+			"path": "pages/user/authentication",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+				}
+		},
+		{
+			"path": "pages/user/bankcard",
+			"style": {
+				"navigationBarTitleText": "我的银行卡"
+				}
+		},
+		{
+			"path": "pages/user/comments",
+			"style": {
+				"navigationBarTitleText": "评价中心"
+				}
+		},
+		{
+			"path": "pages/user/invitationCode",
+			"style": {
+				"navigationBarTitleText": "邀请码"
+				}
+		},
+		{
+			"path": "pages/user/subordinative",
+			"style": {
+				"navigationBarTitleText": "我的下线"
+				}
 		}
-    ],
+	
+	],
 	"tabBar": {
 		"color": "#7a7e83",
 		"selectedColor": "#0AD889",
 		"backgroundColor": "#ffffff",
 		"list": [{
-			"pagePath": "pages/main/main",
-			"text": "首页",
-			"iconPath": "static/img/home.png",
-			"selectedIconPath": "static/img/homeHL.png"
-		},
-		{
-			"pagePath": "pages/order/index",
-			"text": "订单",
-			"iconPath": "static/img/order.png",
-			"selectedIconPath": "static/img/orderHL.png"
-		},{
-			"pagePath": "pages/user/user",
-			"text": "我的",
-			"iconPath": "static/img/account.png",
-			"selectedIconPath": "static/img/accountHL.png"
-		}]
+				"pagePath": "pages/main/main",
+				"text": "首页",
+				"iconPath": "static/img/home.png",
+				"selectedIconPath": "static/img/homeHL.png"
+			},
+			{
+				"pagePath": "pages/order/index",
+				"text": "订单",
+				"iconPath": "static/img/order.png",
+				"selectedIconPath": "static/img/orderHL.png"
+			}, {
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "static/img/account.png",
+				"selectedIconPath": "static/img/accountHL.png"
+			}
+		]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

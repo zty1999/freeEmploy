@@ -210,7 +210,6 @@ export default {
     padding: 8px 15px 5px;
   }
   .title {
-    // width: 100%;
     padding: 10px 20px;
     font-size: 16px;
   }
