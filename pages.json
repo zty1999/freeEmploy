@@ -18,6 +18,11 @@
 				"navigationBarTitleText": "首页"
 			}
 		}, {
+			"path": "pages/main/employer",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}, {
 			"path": "pages/main/tutorMain",
 			"style": {
 				"navigationBarTitleText": "首页"
