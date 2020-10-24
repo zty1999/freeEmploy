@@ -58,7 +58,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="tech-item">
+			<view class="tech-item" @click="goIntroducePage">
 				<view class="head">
 					<image src="../../static/img/tech.png" mode=""></image>
 				</view>
@@ -72,7 +72,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="tech-item">
+			<view class="tech-item" @click="goIntroducePage">
 				<view class="head">
 					<image src="../../static/img/tech.png" mode=""></image>
 				</view>

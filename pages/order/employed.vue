@@ -71,14 +71,8 @@
 	}
 </script>
 <style lang="scss" scoped>
-	page {
-		background-color: #F9F9F9;
-	}
-
 	.content {
-		padding-bottom: 20px;
 		width: 100%;
-		height: calc(100% - 44px);
 		margin-top: 15px;
 		font-size: 13px;
 		color: #333333;
@@ -135,11 +129,9 @@
 		}
 
 		.main {
-			padding: 5px 15px;
-
+			padding: 5px 15px 40px;
 			.list-wrapper {
 				width: 100%;
-
 				.list {
 					.list-item-wrapper {
 						height: 170px;

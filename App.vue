@@ -8,6 +8,7 @@
 		onLaunch: function() {
 			let uniIdToken = uni.getStorageSync('uniIdToken')
 			if (uniIdToken) {
+				this.setAuth(uni.getStorageSync('auth'))
 				this.login(uni.getStorageSync('username'))
 			}
 			console.log('App Launch');
@@ -19,7 +20,7 @@
 			console.log('App Hide');
 		},
 		methods: {
-			...mapMutations(['login']),
+			...mapMutations(['login', 'setAuth']),
 		}
 	}
 </script>
@@ -123,6 +124,10 @@
 	uni-image {
 		width: 100%;
 		height: 100%;
+		position: static;
+	}
+	uni-image>img {
+		position: static;
 	}
 	uni-page-head .uni-page-head {
 		padding: 15px 3px;

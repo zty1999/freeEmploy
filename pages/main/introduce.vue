@@ -50,7 +50,7 @@
 					<view class="ex-img-box">
 						<image src="../../static/img/tag.png" mode=""></image>
 					</view>
-					<view>能力范围：</view>
+					<view>个性标签：</view>
 				</view>
 				<view class="tag">
 					<view class="btn">热情</view>

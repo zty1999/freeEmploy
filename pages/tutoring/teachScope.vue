@@ -129,9 +129,9 @@
 				})
 				console.log(scope)
 				uni.setStorageSync('teachScope',scope);
-				// uni.navigateTo({
-				// 	// url: './'
-				// })
+				uni.navigateTo({
+					url: '../tutoring/private'
+				})
 			}
 		}
 	}

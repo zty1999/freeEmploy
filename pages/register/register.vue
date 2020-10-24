@@ -100,9 +100,9 @@
 				});
 			},
 			registerClick() {
-				// uni.navigateTo({
-				// 	url: '../register/category',
-				// });
+				uni.navigateTo({
+					url: '../tutoring/teachScope',
+				});
 			},
 			goLoginPage () {
 				uni.reLaunch({
