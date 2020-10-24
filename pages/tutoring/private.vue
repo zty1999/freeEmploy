@@ -311,9 +311,9 @@ export default {
       }
       console.log(this.form);
       uni.setStorageSync("private", this.form);
-      // uni.navigateTo({
-      // 	url: './'
-      // })
+      uni.navigateTo({
+      	url: '../login/login'
+      })
     },
   },
 };

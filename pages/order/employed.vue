@@ -85,7 +85,7 @@
 		background-color: #F9F9F9;
 
 		.navbar {
-			// position: fixed;
+			position: fixed;
 			// top: var(--window-top);
 			// left: 0;
 			// right: 0;
@@ -136,7 +136,7 @@
 
 		.main {
 			padding: 5px 15px;
-
+			margin: 35px 0;
 			.list-wrapper {
 				width: 100%;
 

@@ -1,7 +1,7 @@
 <template>
 	<view class="user">
 		<view class="center">
-			<view class="logo" @click="bindLogin" :hover-class="!hasLogin ? 'logo-hover' : ''">
+			<view class="logo">
 				<image class="logo-img" :src="avatarUrl"></image>
 				<view class="logo-title">
 					<text class="uer-name">Hi，{{hasLogin ? userName : '您未登录'}}</text>
@@ -9,7 +9,7 @@
 				</view>
 				<view class="invite-box">
 					<text class="txt">开通VIP享受高品质服务</text>
-					<view class="btn-box">
+					<view class="btn-box" @click="goVipPage">
 						<view class="btn">立即开通</view>
 					</view>
 				</view>
@@ -34,15 +34,15 @@
 				</view>
 			</view>
 			<view class="nav-list" v-if="!isOwner">
-				<view class="nav-item">
+				<view class="nav-item" @click="goAuthenticationPage">
 					<image src="../../static/img/user_1.png" mode=""></image>
 					<view>实名认证</view>
 				</view>
-				<view class="nav-item">
+				<view class="nav-item" @click="goBankPage">
 					<image src="../../static/img/user_2.png" mode=""></image>
 					<view>我的银行卡</view>
 				</view>
-				<view class="nav-item">
+				<view class="nav-item" @click="goCommentPage">
 					<image src="../../static/img/user_3.png" mode=""></image>
 					<view>评价中心</view>
 				</view>
@@ -50,7 +50,7 @@
 					<image src="../../static/img/user_4.png" mode=""></image>
 					<view>分享给好友</view>
 				</view>
-				<view class="nav-item">
+				<view class="nav-item" @click="goPersonalPage">
 					<image src="../../static/img/user_5.png" mode=""></image>
 					<view>个人简历</view>
 				</view>
@@ -58,11 +58,11 @@
 					<image src="../../static/img/user_6.png" mode=""></image>
 					<view>申请代理</view>
 				</view>
-				<view class="nav-item">
+				<view class="nav-item" @click="goInvitationCodePage">
 					<image src="../../static/img/user_7.png" mode=""></image>
 					<view>我的邀请码</view>
 				</view>
-				<view class="nav-item">
+				<view class="nav-item" @click="goSubordinativePage">
 					<image src="../../static/img/user_8.png" mode=""></image>
 					<view>我的下线</view>
 				</view>
@@ -74,7 +74,10 @@
 				<view class="center-list-item" v-if="!isOwner">
 					<text class="list-text">相册</text>
 				</view>
-				<view class="center-list-item">
+				<view class="center-list-item" v-if="isOwner" @click="goRelease">
+					<text class="list-text">发布需求</text>
+				</view>
+				<view class="center-list-item" v-if="isOwner">
 					<text class="list-text">分享给好友</text>
 				</view>
 				<view class="center-list-item">
@@ -84,7 +87,7 @@
 				<view class="center-list-item">
 					<text class="list-text">关于</text>
 				</view>
-				<view class="center-list-item">
+				<view class="center-list-item" @click="logoutBtn">
 					<text class="list-text">退出登录</text>
 				</view>
 			</view>
@@ -101,71 +104,72 @@
 	export default {
 		data() {
 			return {
-				isOwner: true,
+				isOwner: false,
 				avatarUrl: "../../static/img/logo.png",
 			}
 		},
 		computed: {
-			...mapState(['hasLogin', 'forcedLogin', 'userName'])
+			...mapState(['hasLogin', 'forcedLogin', 'userName', 'auth'])
+		},
+		onLoad () {
+			this.isOwner = +this.auth == 2 ? true : false
 		},
 		methods: {
 			...mapMutations(['logout']),
-			bindLogin() {
+			logoutBtn () {
+				this.logout();
+				uni.removeStorageSync('uniIdToken')
+				uni.removeStorageSync('username')
+				uni.removeStorageSync('auth')
 				uni.navigateTo({
 					url: '../login/login',
 				});
+				
 			},
-			bindLogout() {
-				const loginType = uni.getStorageSync('login_type')
-				if (loginType === 'local') {
-					this.logout();
-					if (this.forcedLogin) {
-						uni.reLaunch({
-							url: '../login/login',
-						});
-					}
-					return
-				}
-
-				// uniCloud.callFunction({
-				// 	name: 'user-center',
-				// 	data: {
-				// 		action: 'logout'
-				// 	},
-				// 	success: (e) => {
-
-				// 		console.log('logout success', e);
-
-				// 		if (e.result.code == 0) {
-				// 			this.logout();
-				// 			uni.removeStorageSync('uniIdToken')
-				// 			uni.removeStorageSync('username')
-				// 			/**
-				// 			 * 如果需要强制登录跳转回登录页面
-				// 			 */
-				// 			if (this.forcedLogin) {
-				// 				uni.reLaunch({
-				// 					url: '../login/login',
-				// 				});
-				// 			}
-				// 		} else {
-				// 			uni.showModal({
-				// 				content: e.result.msg,
-				// 				showCancel: false
-				// 			})
-				// 			console.log('登出失败', e);
-				// 		}
-
-				// 	},
-				// 	fail(e) {
-				// 		uni.showModal({
-				// 			content: JSON.stringify(e),
-				// 			showCancel: false
-				// 		})
-				// 	}
-				// })
-
-
+			goBankPage () {
+				uni.navigateTo({
+					url: '../user/bankcard',
+				});
+			},
+			goCommentPage () {
+				uni.navigateTo({
+					url: '../user/comments',
+				});
+			},
+			goAuthenticationPage () {
+				uni.navigateTo({
+					url: '../user/authentication',
+				});
+			},
+			goPersonalPage () {
+				uni.navigateTo({
+					url: '../tutoring/resume',
+				});
+			},
+			goSubordinativePage () {
+				uni.navigateTo({
+					url: '../user/subordinative',
+				});
+			},
+			goInvitationCodePage () {
+				uni.navigateTo({
+					url: '../user/invitationCode',
+				});
+			},
+			goRelease () {
+				// 发布需求
+				uni.showToast({
+					title: '发布需求，没写',
+					icon: 'none',
+					duration: 2000
+				});
+			},
+			goVipPage () {
+				uni.showToast({
+					title: '没写',
+					icon: 'none',
+					duration: 2000
+				});
 			}
 		}
 	}
@@ -341,6 +345,7 @@
 		margin-top: 20rpx;
 		width: 100%;
 		flex-direction: column;
+		margin-bottom: 40px;
 	}
 
 	.center-list-item {

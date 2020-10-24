@@ -1,322 +1,320 @@
 <template>
-	<view class="content"  ref="list1">
-		<view class="navbar">
-			<view :class="currentIndex === index ? 'navbar-item active':'navbar-item'" v-for="(item,index) in ['待应约','待确认','合适','不合适']"
-			 :key="index" @click="navControl(index)">
-				<text>{{item}}</text>
-				<text class="border-box"></text>
-			</view>
-		</view>
+  <view class="content">
+    <view class="navbar">
+      <view
+        :class="currentIndex === index ? 'navbar-item active' : 'navbar-item'"
+        v-for="(item, index) in ['待应约', '待确认', '合适', '不合适']"
+        :key="index"
+        @click="navControl(index)"
+      >
+        <text>{{ item }}</text>
+        <text class="border-box"></text>
+      </view>
+    </view>
 
-		<view class="main" ref="main">
-			<!-- 待应约 -->
-			<view class="list-wrapper" v-if="currentIndex == 0" >
-				<view class="list">
-					<navigator url="./" v-for="item in 4" :key="item">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="">
-								<view class="item-content">
-									<view class="content-left">
-										<image class="image" src="../../static/img/accountHL.png"></image>
-									</view>
-									<view class="content-right">
-										<view class="content-right-title">
-											<text>张老师|女|实名认证|教师资格证</text>
-										</view>
-										<view class="content-right-introduce">
-											<view class="introduce-item identity">
+    <view class="main">
+      <!-- 待应约 -->
+      <view class="list-wrapper" v-if="currentIndex == 0">
+        <view class="list">
+          <view v-for="item in 4" :key="item">
+            <view class="list-item-wrapper">
+              <view class="list-item" title="">
+                <view class="item-content">
+                  <view class="content-left">
+                    <image
+                      class="image"
+                      src="../../static/img/accountHL.png"
+                    ></image>
+                  </view>
+                  <view class="content-right">
+                    <view class="content-right-title">
+                      <text>张老师|女|实名认证|教师资格证</text>
+                    </view>
+                    <view class="content-right-introduce">
+                      <view class="introduce-item identity">
+                        <text>大学生</text>
+                        <text>身份</text>
+                      </view>
+                      <view class="introduce-item age">
+                        <text>25岁</text>
+                        <text>年龄</text>
+                      </view>
+                      <view class="introduce-item teachtime">
+                        <text>三年</text>
+                        <text>教龄</text>
+                      </view>
+                    </view>
+                    <view class="content-right-teachscope">
+                      <text>小学全科|初中数学、物理、化学|高中数学</text>
+                    </view>
 
-												<text>大学生</text>
-												<text>身份</text>
-											</view>
-											<view class="introduce-item age">
+                    <view class="content-right-tags">
+                      <text class="tags-item bad">不适合</text>
+                      <text class="tags-item good">应约并联系</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 待确认 -->
+      <view class="list-wrapper" v-if="currentIndex == 1">
+        <view class="list">
+          <view v-for="item in 4" :key="item">
+            <view class="list-item-wrapper">
+              <view class="list-item" title="">
+                <view class="item-content">
+                  <view class="content-left">
+                    <image
+                      class="image"
+                      src="../../static/img/accountHL.png"
+                    ></image>
+                  </view>
+                  <view class="content-right">
+                    <view class="content-right-title">
+                      <text>张老师|女|实名认证|教师资格证</text>
+                    </view>
+                    <view class="content-right-introduce">
+                      <view class="introduce-item identity">
+                        <text>大学生</text>
+                        <text>身份</text>
+                      </view>
+                      <view class="introduce-item age">
+                        <text>25岁</text>
+                        <text>年龄</text>
+                      </view>
+                      <view class="introduce-item teachtime">
+                        <text>三年</text>
+                        <text>教龄</text>
+                      </view>
+                    </view>
+                    <view class="content-right-teachscope">
+                      <text>小学全科|初中数学、物理、化学|高中数学</text>
+                    </view>
 
-												<text>25岁</text>
-												<text>年龄</text>
-											</view>
-											<view class="introduce-item teachtime">
+                    <view class="content-right-tags">
+                      <text class="tags-item good">合适</text>
+                      <text class="tags-item bad">不合适</text>
+                    </view>
+                    <view class="content-right-phone">
+                      <text>联系电话：13888888888</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 合适 -->
+      <view class="list-wrapper" v-if="currentIndex == 2">
+        <view class="list">
+          <view v-for="item in 4" :key="item">
+            <view class="list-item-wrapper">
+              <view class="list-item" title="">
+                <view class="item-content">
+                  <view class="content-left">
+                    <image
+                      class="image"
+                      src="../../static/img/accountHL.png"
+                    ></image>
+                  </view>
+                  <view class="content-right">
+                    <view class="content-right-title">
+                      <text>张老师|女|实名认证|教师资格证</text>
+                    </view>
+                    <view class="content-right-introduce">
+                      <view class="introduce-item identity">
+                        <text>大学生</text>
+                        <text>身份</text>
+                      </view>
+                      <view class="introduce-item age">
+                        <text>25岁</text>
+                        <text>年龄</text>
+                      </view>
+                      <view class="introduce-item teachtime">
+                        <text>三年</text>
+                        <text>教龄</text>
+                      </view>
+                    </view>
+                    <view class="content-right-teachscope">
+                      <text>小学全科|初中数学、物理、化学|高中数学</text>
+                    </view>
+                  </view>
+                </view>
+                <view class="item-bottom">
+                  <view v-if="comment.length === 0" class="incomment">
+                    <button
+                      class="tocomment"
+                      v-if="showinput === false"
+                      @click="showInput"
+                    >
+                      进行评价
+                    </button>
+                    <view v-if="showinput" class="input-wrapper">
+                      <textarea
+                        class="input"
+                        type="text"
+                        placeholder="请输入评论"
+                        value="inputValue"
+                        v-model="inputValue"
+                      ></textarea>
+                      <button @click="haveComments" class="submit-button">
+                        完成评论
+                      </button>
+                    </view>
+                  </view>
+                  <view v-if="comment.length !== 0" class="comments">
+                    <text>{{ comment }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
 
-												<text>三年</text>
-												<text>教龄</text>
-											</view>
-										</view>
-										<view class="content-right-teachscope">
-											<text>小学全科|初中数学、物理、化学|高中数学</text>
-										</view>
-
-										<view class="content-right-tags">
-											<text class="tags-item bad">不适合</text>
-											<text class="tags-item good">应约并联系</text>
-										</view>
-
-									</view>
-
-								</view>
-							</view>
-						</view>
-					</navigator>
-				</view>
-			</view>
-			<!-- 待确认 -->
-			<view class="list-wrapper" v-if="currentIndex == 1">
-				<view class="list">
-					<navigator url="./" v-for="item in 4" :key="item">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="">
-								<view class="item-content">
-									<view class="content-left">
-										<image class="image" src="../../static/img/accountHL.png"></image>
-									</view>
-									<view class="content-right">
-										<view class="content-right-title">
-											<text>张老师|女|实名认证|教师资格证</text>
-										</view>
-										<view class="content-right-introduce">
-											<view class="introduce-item identity">
-
-												<text>大学生</text>
-												<text>身份</text>
-											</view>
-											<view class="introduce-item age">
-
-												<text>25岁</text>
-												<text>年龄</text>
-											</view>
-											<view class="introduce-item teachtime">
-
-												<text>三年</text>
-												<text>教龄</text>
-											</view>
-										</view>
-										<view class="content-right-teachscope">
-											<text>小学全科|初中数学、物理、化学|高中数学</text>
-										</view>
-
-										<view class="content-right-tags">
-											<text class="tags-item good">合适</text>
-											<text class="tags-item bad">不合适</text>
-										</view>
-										<view class="content-right-phone">
-											<text>联系电话：13888888888</text>
-										</view>
-									</view>
-
-								</view>
-							</view>
-						</view>
-					</navigator>
-				</view>
-			</view>
-			<!-- 合适 -->
-			<view class="list-wrapper" v-if="currentIndex == 2">
-				<view class="list">
-					<navigator url="./" v-for="item in 4" :key="item">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="">
-								<view class="item-content">
-									<view class="content-left">
-										<image class="image" src="../../static/img/accountHL.png"></image>
-									</view>
-									<view class="content-right">
-										<view class="content-right-title">
-											<text>张老师|女|实名认证|教师资格证</text>
-										</view>
-										<view class="content-right-introduce">
-											<view class="introduce-item identity">
-
-												<text>大学生</text>
-												<text>身份</text>
-											</view>
-											<view class="introduce-item age">
-
-												<text>25岁</text>
-												<text>年龄</text>
-											</view>
-											<view class="introduce-item teachtime">
-
-												<text>三年</text>
-												<text>教龄</text>
-											</view>
-										</view>
-										<view class="content-right-teachscope">
-											<text>小学全科|初中数学、物理、化学|高中数学</text>
-										</view>
-									</view>
-
-								</view>
-								<view class="item-bottom">
-									<view v-if="comment.length === 0" class="incomment">
-										<button class="tocomment" v-if="showinput === false" @click="showInput">进行评价</button>
-										<view v-if="showinput" class="input-wrapper">
-											<textarea class="input" type="text" placeholder="请输入评论" value="inputValue" v-model="inputValue"></textarea>
-											<button @click="haveComments" class="submit-button">完成评论</button>
-										</view>
-									</view>
-									<view v-if="comment.length !== 0" class="comments">
-										<text>{{comment}}</text>
-									</view>
-								</view>
-							</view>
-						</view>
-					</navigator>
-				</view>
-			</view>
-
-			<!-- 不合适 -->
-			<view class="list-wrapper" v-if="currentIndex == 3">
-				<view class="list">
-					<navigator url="./" v-for="item in 4" :key="item">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="">
-								<view class="item-content">
-									<view class="content-left">
-										<image class="image" src="../../static/img/accountHL.png"></image>
-									</view>
-									<view class="content-right">
-										<view class="content-right-title">
-											<text>张老师|女|实名认证|教师资格证</text>
-										</view>
-										<view class="content-right-introduce">
-											<view class="introduce-item identity">
-
-												<text>大学生</text>
-												<text>身份</text>
-											</view>
-											<view class="introduce-item age">
-
-												<text>25岁</text>
-												<text>年龄</text>
-											</view>
-											<view class="introduce-item teachtime">
-
-												<text>三年</text>
-												<text>教龄</text>
-											</view>
-										</view>
-										<view class="content-right-teachscope">
-											<text>小学全科|初中数学、物理、化学|高中数学</text>
-										</view>
-
-									</view>
-
-								</view>
-							</view>
-						</view>
-					</navigator>
-				</view>
-			</view>
-
-
-		</view>
-	</view>
+      <!-- 不合适 -->
+      <view class="list-wrapper" v-if="currentIndex == 3">
+        <view class="list">
+          <view v-for="item in 4" :key="item">
+            <view class="list-item-wrapper">
+              <view class="list-item" title="">
+                <view class="item-content">
+                  <view class="content-left">
+                    <image
+                      class="image"
+                      src="../../static/img/accountHL.png"
+                    ></image>
+                  </view>
+                  <view class="content-right">
+                    <view class="content-right-title">
+                      <text>张老师|女|实名认证|教师资格证</text>
+                    </view>
+                    <view class="content-right-introduce">
+                      <view class="introduce-item identity">
+                        <text>大学生</text>
+                        <text>身份</text>
+                      </view>
+                      <view class="introduce-item age">
+                        <text>25岁</text>
+                        <text>年龄</text>
+                      </view>
+                      <view class="introduce-item teachtime">
+                        <text>三年</text>
+                        <text>教龄</text>
+                      </view>
+                    </view>
+                    <view class="content-right-teachscope">
+                      <text>小学全科|初中数学、物理、化学|高中数学</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				// 导航默认选型
-				currentIndex: 2,
-				// // 控制显示进行评论按钮
-				// incomment: true,
-				// 控制显示输入评论板块
-				showinput: false,
-				// 输入的评论
-				comment: '',
-				inputValue: ''
-			}
-		},
-		
-		methods: {
-			// 导航控制
-			navControl(index) {
-				this.currentIndex = index;
-				uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 100
-				});
-				
-			},
-			// 显示输入框
-			showInput() {
-				this.showinput = true;
-			},
-			// 提交评论
-			haveComments() {
-				this.comment = this.inputValue
-			},
-			
-		}
-	}
+export default {
+  data() {
+    return {
+        // 导航默认选型
+        currentIndex: 0,
+        // // 控制显示进行评论按钮
+        // incomment: true,
+        // 控制显示输入评论板块
+        showinput: false,
+        // 输入的评论
+        comment: '',
+        inputValue: ''
+    };
+  },
+  methods: {
+    // 导航控制
+    navControl(index) {
+        this.currentIndex = index;
+    },
+    // 显示输入框
+    showInput() {
+        this.showinput = true;
+    },
+    // 提交评论
+    haveComments() {
+        this.comment = this.inputValue
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
-	page {
-		background-color: #F9F9F9;
-	}
+page {
+  background-color: #f9f9f9;
+}
 
-	.content {
-		position: relative;
-		padding-bottom: 20px;
-		width: 100%;
-		margin-top: 15px;
-		font-size: 13px;
-		color: #333333;
-		background-color: #F9F9F9;
+.content {
+  padding-bottom: 20px;
+  width: 100%;
+  height: calc(100% - 44px);
+  margin-top: 15px;
+  font-size: 13px;
+  color: #333333;
+  background-color: #f9f9f9;
 
-		.navbar {
-			// position: fixed;
-			// top: var(--window-top);
-			// left: 0;
-			// right: 0;
-			// z-index: 9;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			text-align: center;
-			font-size: 14px;
-			color: #656565;
-			background-color: #FFFFFF;
+  .navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    // letter-spacing: 3px;
+    color: #656565;
+    background-color: #ffffff;
 
-			.navbar-item {
-				flex: 1;
-				text-align: center;
+    .navbar-item {
+      flex: 1;
+      text-align: center;
 
-				text {
-					display: block;
-					height: 34px;
-					line-height: 34px;
-					margin: 0 10px;
-					font-weight: 700;
+      text {
+        display: block;
+        height: 34px;
+        line-height: 34px;
+        margin: 0 10px;
+        font-weight: 700;
+      }
 
-				}
+      .border-box {
+        width: 20px;
+        height: 1px;
+        margin: 0 auto;
+        border-top: 3px solid transprants;
+        border-radius: 10px 10px 10px 10px;
+      }
+    }
 
-				.border-box {
-					width: 20px;
-					height: 1px;
-					margin: 0 auto;
-					border-top: 3px solid transprants;
-					border-radius: 10px 10px 10px 10px;
-				}
-			}
+    .active {
+      color: #00e394;
 
-			.active {
-				color: #00E394;
+      text {
+        font-size: 16px;
+      }
+      .border-box {
+        background-color: #00e395;
+        border-top: 3px solid #00e395;
+      }
+    }
+  }
 
-				text {
-					font-size: 16px;
-				}
-
-				.border-box {
-					background-color: #00E395;
-					border-top: 3px solid #00E395;
-				}
-			}
-		}
-
-		.main {
-			padding: 5px 15px;
-			height: calc(100% - 70px);
-			.list-wrapper {
+  .main {
+    padding: 5px 15px;
+    margin: 35px 0;
+    .list-wrapper {
 				width: 100%;
 
 				.list {
@@ -341,6 +339,10 @@
 										width: 110px;
 										height: 125px;
 									}
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                    }
 								}
 
 								.content-right {
@@ -447,7 +449,7 @@
 
 					}
 				}
-			}
-		}
 	}
+  }
+}
 </style>

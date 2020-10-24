@@ -18,14 +18,6 @@
 			<button type="primary" class="primary" @tap="bindLogin">登录</button>
 			<view class="reg-box">还没账号？<view class="reg-btn" @click="goRegister">立即注册</view></view>
 		</view>
-		<view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
-			<view class="oauth-image" v-for="provider in providerList" :key="provider.value">
-				<image :src="provider.image" @tap="oauth(provider.value)"></image>
-				<!-- #ifdef MP-WEIXIN -->
-				<button v-if="!isDevtools" open-type="getUserInfo" @getuserinfo="getUserInfo"></button>
-				<!-- #endif -->
-			</view>
-		</view>
 	</view>
 </template>
 
@@ -57,29 +49,7 @@
 		},
 		computed: mapState(['forcedLogin']),
 		methods: {
-			...mapMutations(['login']),
-			initProvider() {
-				const filters = ['weixin', 'qq', 'sinaweibo'];
-				uni.getProvider({
-					service: 'oauth',
-					success: (res) => {
-						if (res.provider && res.provider.length) {
-							for (let i = 0; i < res.provider.length; i++) {
-								if (~filters.indexOf(res.provider[i])) {
-									this.providerList.push({
-										value: res.provider[i],
-										image: '../../static/img/' + res.provider[i] + '.png'
-									});
-								}
-							}
-							this.hasProvider = true;
-						}
-					},
-					fail: (err) => {
-						console.error('获取服务供应商失败：' + JSON.stringify(err));
-					}
-				});
-			},
+			...mapMutations(['login', 'setAuth']),
 			initPosition() {
 				/**
 				 * 使用 absolute 定位，并且设置 bottom 值进行定位。软键盘弹出时，底部会因为窗口变化而被顶上来。
@@ -101,61 +71,28 @@
 					})
 					return
 				}
-				// uniCloud.callFunction({
-				// 	name: 'user-center',
-				// 	data: {
-				// 		action: 'sendSmsCode',
-				// 		params: {
-				// 			mobile: this.mobile
-				// 		}
-				// 	},
-				// 	success: (e) => {
-				// 		if (e.result.code == 0) {
-				// 			uni.showModal({
-				// 				content: '验证码发送成功，请注意查收',
-				// 				showCancel: false
-				// 			})
-				// 			this.codeDuration = 60
-				// 			this.codeInterVal = setInterval(() => {
-				// 				this.codeDuration--
-				// 				if (this.codeDuration === 0) {
-				// 					if (this.codeInterVal) {
-				// 						clearInterval(this.codeInterVal)
-				// 						this.codeInterVal = null
-				// 					}
-				// 				}
-				// 			}, 1000)
-				// 		} else {
-				// 			uni.showModal({
-				// 				content: '验证码发送失败：' + e.result.msg,
-				// 				showCancel: false
-				// 			})
-				// 		}
-
-				// 	},
-				// 	fail(e) {
-				// 		uni.showModal({
-				// 			content: '验证码发送失败',
-				// 			showCancel: false
-				// 		})
-				// 	}
-				// })
 			},
 			loginBySms() {
-				if (!/^1\d{10}$/.test(this.mobile)) {
-					uni.showModal({
-						content: '手机号码填写错误',
-						showCancel: false
-					})
-					return
-				}
-				if (!/^\d{6}$/.test(this.code)) {
-					console.log('xxxx')
-					uni.showModal({
-						content: '验证码为6位纯数字',
-						showCancel: false
-					});
-					return;
+				// if (!/^1\d{10}$/.test(this.mobile)) {
+				// 	uni.showModal({
+				// 		content: '手机号码填写错误',
+				// 		showCancel: false
+				// 	})
+				// 	return
+				// }
+				// if (!/^\d{6}$/.test(this.code)) {
+				// 	uni.showModal({
+				// 		content: '验证码为6位纯数字',
+				// 		showCancel: false
+				// 	});
+				// 	return;
+				// }
+				if (this.code === '111111') {
+					uni.setStorageSync('auth', JSON.stringify(2))
+					this.setAuth(2)
+				} else {
+					uni.setStorageSync('auth', JSON.stringify(1))
+					this.setAuth(1)
 				}
 				uni.setStorageSync('uniIdToken', '5903485306u34krtjo')
 				uni.setStorageSync('username', this.mobile)
@@ -171,70 +108,9 @@
 					url: '../register/choose',
 				});
 			},
-			oauth(value) {
-				console.log('三方登录只演示登录api能力，暂未关联云端数据');
-				uni.login({
-					provider: value,
-					success: (res) => {
-						uni.getUserInfo({
-							provider: value,
-							success: (infoRes) => {
-								/**
-								 * 实际开发中，获取用户信息后，需要将信息上报至服务端。
-								 * 服务端可以用 userInfo.openId 作为用户的唯一标识新增或绑定用户信息。
-								 */
-								this.loginLocal(infoRes.userInfo.nickName);
-							},
-							fail() {
-								uni.showToast({
-									icon: 'none',
-									title: '登陆失败'
-								});
-							}
-						});
-					},
-					fail: (err) => {
-						console.error('授权登录失败：' + JSON.stringify(err));
-					}
-				});
-			},
-			getUserInfo({
-				detail
-			}) {
-				console.log('三方登录只演示登录api能力，暂未关联云端数据');
-				if (detail.userInfo) {
-					this.loginLocal(detail.userInfo.nickName);
-				} else {
-					uni.showToast({
-						icon: 'none',
-						title: '登陆失败'
-					});
-				}
-			},
-			loginLocal(nickName) {
-				uni.setStorageSync('login_type', 'local')
-				uni.setStorageSync('username', nickName)
-				this.toMain(nickName);
-			},
-			toMain(userName) {
-				this.login(userName);
-				/**
-				 * 强制登录时使用reLaunch方式跳转过来
-				 * 返回首页也使用reLaunch方式
-				 */
-				if (this.forcedLogin) {
-					uni.reLaunch({
-						url: '../main/main',
-					});
-				} else {
-					uni.navigateBack();
-				}
-
-			}
 		},
 		onReady() {
 			this.initPosition();
-			this.initProvider();
 			// #ifdef MP-WEIXIN
 			this.isDevtools = uni.getSystemInfoSync().platform === 'devtools';
 			// #endif
@@ -279,41 +155,7 @@
 	button.primary {
 		background-color: #00C97A;
 	}
-	
-	.oauth-row {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
 
-	.oauth-image {
-		position: relative;
-		width: 50px;
-		height: 50px;
-		border: 1px solid #dddddd;
-		border-radius: 50px;
-		margin: 0 20px;
-		background-color: #ffffff;
-	}
-
-	.oauth-image image {
-		width: 30px;
-		height: 30px;
-		margin: 10px;
-	}
-
-	.oauth-image button {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-	}
 	.reg-box {
 		margin-top: 10px;
 		color: #333333;

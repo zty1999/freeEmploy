@@ -14,11 +14,11 @@ export default {
   onLoad () {
     if (+this.auth === 2) {
         uni.redirectTo({
-            url: '../main/employer',
+            url: '../order/employer',
         })
     } else {
         uni.redirectTo({
-            url: '../main/tutorMain',
+            url: '../order/employed',
         })
     }
   }
