@@ -71,21 +71,15 @@
 	}
 </script>
 <style lang="scss" scoped>
-	page {
-		background-color: #F9F9F9;
-	}
-
 	.content {
-		padding-bottom: 20px;
 		width: 100%;
-		height: calc(100% - 44px);
 		margin-top: 15px;
 		font-size: 13px;
 		color: #333333;
 		background-color: #F9F9F9;
 
 		.navbar {
-			position: fixed;
+			// position: fixed;
 			// top: var(--window-top);
 			// left: 0;
 			// right: 0;
@@ -135,11 +129,9 @@
 		}
 
 		.main {
-			padding: 5px 15px;
-			margin: 35px 0;
+			padding: 5px 15px 40px;
 			.list-wrapper {
 				width: 100%;
-
 				.list {
 					.list-item-wrapper {
 						height: 170px;

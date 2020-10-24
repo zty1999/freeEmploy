@@ -11,9 +11,8 @@
 			</view>
 			<view class="list-wrapper">
 				<view class="list">
-					<navigator url="">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="" >
+						<view class="list-item-wrapper"  v-for="item in 4" :key="item">
+							<view class="list-item" title="">
 									<view class="item-top">
 										<text>数学辅导|需要大学生|限女生|20-30岁</text>
 									</view>
@@ -42,140 +41,18 @@
 												<view class="content-right-price">
 													<text>100/小时</text>
 												</view>
+												<navigator url="">
 												<view class="content-right-button">
 													<button class="button">投递接单</button>
 												</view>
+												</navigator>
 											</view>
 											</view>
 								
 								</view>
 							
 						</view>
-					</navigator>
-					<navigator url="">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="" >
-									<view class="item-top">
-										<text>数学辅导|需要大学生|限女生|20-30岁</text>
-									</view>
-										<view class="item-content">
-											<view class="content-left">
-												<view class="content-left-time">
-													<text>辅导时间：周六上午10:00-12:00</text>
-												</view>
-												<view class="content-left-time">
-													<text>发布时间：2020.03.30</text>
-												</view>
-												<view class="content-left-introduce">
-													<text>吴女士 | 女孩 | 三年级 | 南昌县九里象湖小区</text>
-												</view>
-												<view class="content-left-tags">
-													<text class="tags-item">打基础</text>
-													<text class="tags-item">升学考</text>
-												</view>
-												<view class="content-left-tag">
-												</view>
-											</view>
-											<view class="content-right">
-												<view class="content-right-distance">
-													<text>距您20km</text>
-												</view>
-												<view class="content-right-price">
-													<text>100/小时</text>
-												</view>
-												<view class="content-right-button">
-													<button class="button">投递接单</button>
-												</view>
-											</view>
-											</view>
-								
-								</view>
-							
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="" >
-									<view class="item-top">
-										<text>数学辅导|需要大学生|限女生|20-30岁</text>
-									</view>
-										<view class="item-content">
-											<view class="content-left">
-												<view class="content-left-time">
-													<text>辅导时间：周六上午10:00-12:00</text>
-												</view>
-												<view class="content-left-time">
-													<text>发布时间：2020.03.30</text>
-												</view>
-												<view class="content-left-introduce">
-													<text>吴女士 | 女孩 | 三年级 | 南昌县九里象湖小区</text>
-												</view>
-												<view class="content-left-tags">
-													<text class="tags-item">打基础</text>
-													<text class="tags-item">升学考</text>
-												</view>
-												<view class="content-left-tag">
-												</view>
-											</view>
-											<view class="content-right">
-												<view class="content-right-distance">
-													<text>距您20km</text>
-												</view>
-												<view class="content-right-price">
-													<text>100/小时</text>
-												</view>
-												<view class="content-right-button">
-													<button class="button">投递接单</button>
-												</view>
-											</view>
-											</view>
-								
-								</view>
-							
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="list-item-wrapper">
-							<view class="list-item" title="" >
-									<view class="item-top">
-										<text>数学辅导|需要大学生|限女生|20-30岁</text>
-									</view>
-										<view class="item-content">
-											<view class="content-left">
-												<view class="content-left-time">
-													<text>辅导时间：周六上午10:00-12:00</text>
-												</view>
-												<view class="content-left-time">
-													<text>发布时间：2020.03.30</text>
-												</view>
-												<view class="content-left-introduce">
-													<text>吴女士 | 女孩 | 三年级 | 南昌县九里象湖小区</text>
-												</view>
-												<view class="content-left-tags">
-													<text class="tags-item">打基础</text>
-													<text class="tags-item">升学考</text>
-												</view>
-												<view class="content-left-tag">
-												</view>
-											</view>
-											<view class="content-right">
-												<view class="content-right-distance">
-													<text>距您20km</text>
-												</view>
-												<view class="content-right-price">
-													<text>100/小时</text>
-												</view>
-												<view class="content-right-button">
-													<button class="button">投递接单</button>
-												</view>
-											</view>
-											</view>
-								
-								</view>
-							
-						</view>
-					</navigator>
-				
+					
 					</view>
 
 			</view>
@@ -215,7 +92,7 @@
 		background-color: #F9F9F9;
 
 		.main {
-			padding: 10px 15px;
+			padding: 10px 15px 40px;
 
 			.image-wrapper {
 				display: flex;
